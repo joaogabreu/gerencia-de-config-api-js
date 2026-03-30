@@ -1,0 +1,20 @@
+name: Self Runner maquina pessoal
+
+on:
+  workflow_dispatch:
+
+jobs:
+  teste:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker
+        uses: docker/build-push-action@v6
+        with:
+          context: ./primeira-pipeline
+          file: ./primeira-pipeline/dockerfile
+          push: false
+          tags: minha-imagem:latest
