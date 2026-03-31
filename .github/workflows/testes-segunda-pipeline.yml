@@ -60,6 +60,8 @@ jobs:
     needs: e2e-tests
 
     steps:
+      - name: Debug estrutura
+        run: ls -R
       - name: Verificar Quality Gate
         uses: SonarSource/sonarcloud-github-action@v2
         with:
