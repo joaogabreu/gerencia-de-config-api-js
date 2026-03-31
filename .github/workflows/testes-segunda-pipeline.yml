@@ -65,7 +65,7 @@ jobs:
         with:
           projectBaseDir: ./segunda-pipeline
           args: >
-            -Dsonar.projectKey=gerencia-de-config
+            -Dsonar.projectKey=profdiegocbcastro_gerencia-de-config
             -Dsonar.organization=profdiegocbcastro
             -Dsonar.qualitygate.wait=true
         timeout-minutes: 5
