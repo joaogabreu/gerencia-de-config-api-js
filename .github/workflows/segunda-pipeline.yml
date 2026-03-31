@@ -21,7 +21,7 @@ jobs:
           node-version: '20'
 
   workflow-testes:
-    uses: ./.github/workflows/segunda-pipeline.yml
+    uses: ./.github/workflows/testes-segunda-pipeline.yml
     needs: build
 
 
