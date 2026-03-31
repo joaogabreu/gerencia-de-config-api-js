@@ -65,7 +65,6 @@ jobs:
       - name: Verificar Quality Gate
         uses: SonarSource/sonarcloud-github-action@v2
         with:
-          projectBaseDir: ./segunda-pipeline
           args: >
             -Dsonar.projectKey=profdiegocbcastro_gerencia-de-config
             -Dsonar.organization=profdiegocbcastro
