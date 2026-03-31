@@ -1,0 +1,52 @@
+name: Testes da Segunda Pipeline
+
+on:
+  workflow_call:
+
+defaults:
+  run:
+    working-directory: ./segunda-pipeline
+
+jobs:
+  unit-tests:
+    name: Testes Unitários
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        working-directory: ./segunda-pipeline
+        run: npm install
+
+      - name: Run Unit Tests
+        working-directory: ./segunda-pipeline
+        run: npm test:unit
+
+  e2e-tests:
+    name: Testes End-to-End
+    runs-on: ubuntu-latest
+    needs: unit-tests
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        working-directory: ./segunda-pipeline
+        run: npm install
+
+      - name: Run E2E Tests
+        working-directory: ./segunda-pipeline
+        run: npm test:e2e

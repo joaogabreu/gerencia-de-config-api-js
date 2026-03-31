@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: '20'
 
+  workflow-testes:
+    uses: ./.github/workflows/testes.yml
+
   release:
     name: Criação de Release
     runs-on: ubuntu-latest
