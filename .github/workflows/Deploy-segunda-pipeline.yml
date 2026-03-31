@@ -3,8 +3,8 @@ name: Deploy Homologação + DAST
 on:
   workflow_call:
       secrets:
-      RENDER_DEPLOY_HOOK:
-        required: true
+        RENDER_DEPLOY_HOOK:
+          required: true
 
 jobs:
   deploy-homolog:
