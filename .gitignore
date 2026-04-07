@@ -3,3 +3,6 @@ node_modules/
 .env
 
 __pycache__/
+
+APIs para exercícios/api-python/dockerfile
+APIs para exercícios/api-python/compose.yml
