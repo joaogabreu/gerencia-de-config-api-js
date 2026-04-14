@@ -75,10 +75,11 @@ jobs:
         if: ${{ env.SONAR_TOKEN != '' && vars.SONAR_PROJECT_KEY != '' && vars.SONAR_ORGANIZATION != '' }}
         uses: SonarSource/sonarcloud-github-action@v2
         with:
+          projectBaseDir: ${{ env.API_PATH }}
           args: >
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
-            -Dsonar.sources=${{ env.API_PATH }}
+            -Dsonar.sources=.
             -Dsonar.qualitygate.wait=true
 
       - name: SAST com Semgrep
