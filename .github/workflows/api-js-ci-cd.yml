@@ -71,15 +71,18 @@ jobs:
         working-directory: ${{ env.API_PATH }}
         run: npm run test:integration
 
+      - name: Preparar caminho para Sonar
+        if: ${{ env.SONAR_TOKEN != '' && vars.SONAR_PROJECT_KEY != '' && vars.SONAR_ORGANIZATION != '' }}
+        run: ln -s "${{ env.API_PATH }}" api-js-src
+
       - name: SonarQube
         if: ${{ env.SONAR_TOKEN != '' && vars.SONAR_PROJECT_KEY != '' && vars.SONAR_ORGANIZATION != '' }}
         uses: SonarSource/sonarcloud-github-action@v2
         with:
-          projectBaseDir: ${{ env.API_PATH }}
           args: >
             -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }}
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
-            -Dsonar.sources=.
+            -Dsonar.sources=api-js-src
             -Dsonar.qualitygate.wait=true
 
       - name: SAST com Semgrep
