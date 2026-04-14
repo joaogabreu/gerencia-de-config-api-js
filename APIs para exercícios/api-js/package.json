@@ -1,20 +1,29 @@
 {
+  "name": "testando-knex",
+  "version": "1.0.0",
+  "description": "API em JavaScript para exercícios de Docker, Compose e CI/CD",
+  "main": "index.js",
+  "type": "module",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^5.2.1",
     "knex": "^3.1.0",
     "pg": "^8.20.0",
-    "sequelize": "^6.37.8",
-    "dotenv": "^16.4.5"
+    "sequelize": "^6.37.8"
   },
-  "name": "testando-knex",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "build": "node --check index.js && node --check app.js",
+    "lint": "eslint .",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:unit": "node --test tests/unit/**/*.test.js",
+    "test:integration": "node --test tests/integration/**/*.test.js"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "supertest": "^7.1.4"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "type": "module"
+  "license": "ISC"
 }

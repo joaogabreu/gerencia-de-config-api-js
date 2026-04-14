@@ -1,12 +1,7 @@
-import express from 'express';
-import router from './router.js';
 import db from './database.js';
+import app from './app.js';
 
-const app = express();
 const port = 3000;
-
-app.use(express.json());
-app.use('/', router);
 
 try {
     await db.authenticate();
