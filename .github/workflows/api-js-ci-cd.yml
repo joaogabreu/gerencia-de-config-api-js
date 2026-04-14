@@ -38,6 +38,7 @@ jobs:
       DB_PASSWORD: apppassword
       DB_HOST: localhost
       DB_DIALECT: postgres
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     steps:
       - name: Checkout
@@ -71,7 +72,7 @@ jobs:
         run: npm run test:integration
 
       - name: SonarQube
-        if: ${{ secrets.SONAR_TOKEN != '' && vars.SONAR_PROJECT_KEY != '' && vars.SONAR_ORGANIZATION != '' }}
+        if: ${{ env.SONAR_TOKEN != '' && vars.SONAR_PROJECT_KEY != '' && vars.SONAR_ORGANIZATION != '' }}
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
@@ -79,8 +80,6 @@ jobs:
             -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }}
             -Dsonar.sources=${{ env.API_PATH }}
             -Dsonar.qualitygate.wait=true
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: SAST com Semgrep
         uses: returntocorp/semgrep-action@v1
